@@ -5,3 +5,5 @@ services:
     container_name: hello-go-app
     ports:
       - "8080:8080"
+    networks:
+      - infra-net
