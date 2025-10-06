@@ -1,6 +1,6 @@
 
 services:
-  app:
+  hello-go:
     build: .
     container_name: hello-go-app
     ports:
