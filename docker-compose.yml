@@ -7,3 +7,7 @@ services:
       - "8080:8080"
     networks:
       - infra-net
+
+networks:
+  infra-net:
+    external: true    # tells Docker not to create a new network but to attach to the existing one made by the infra stack.
