@@ -1,8 +1,5 @@
 # This is a simplified Woodpecker CI/CD pipeline configuration file.
-# It uses Docker Compose to both build and deploy the application in a single step.
-
-name: Build and Deploy A very sinple go helloApp on Raspberry Pi
-
+# It uses Docker Compose to both build and deploy the application in a single step
 # The workspace is where your repository will be cloned by Woodpecker.
 # workspace:
 #   base: /woodpecker/src
