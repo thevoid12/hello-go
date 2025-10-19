@@ -1,0 +1,31 @@
+# This is a simplified Woodpecker CI/CD pipeline configuration file.
+# It uses Docker Compose to both build and deploy the application in a single step.
+
+name: Build and Deploy A very sinple go hello App on Raspberry Pi
+
+# The workspace is where your repository will be cloned by Woodpecker.
+workspace:
+  base: /woodpecker/src
+  path: github.com/your-username/your-repo-name # <-- IMPORTANT: Change this to your repo path
+
+steps:
+  # This single step uses Docker Compose to build the image and run the container.
+  - name: Build and Deploy with Docker Compose
+    image: docker/compose:latest
+    # This 'volumes' section is crucial. It gives this step's container
+    # access to the host's Docker service, allowing it to control Docker on your Pi.
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    # The command to execute. 'docker-compose up -d --build' does everything:
+    # 1. Builds the image from the Dockerfile if it's new or the code has changed.
+    # 2. Creates and starts the container in the background (-d).
+    # 3. Replaces the old container with the new one on subsequent runs.
+    commands:
+      - docker-compose up -d --build
+
+# This 'when' clause ensures the pipeline only runs on pushes to the 'main' branch.
+# This prevents deploying every single commit from feature branches.
+when:
+  branch: main
+  event: push
+
