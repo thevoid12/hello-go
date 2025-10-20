@@ -1,29 +1,14 @@
-# when:
-#   branch: main
-#   event: push
-
-
-# steps:
-#   - name: Build and Deploy with Docker Compose
-#     image: docker/compose:latest
-#     volumes:
-#       - /var/run/docker.sock:/var/run/docker.sock
-#       - /home/void/hello-go:/workspace/hello-go
-#     commands:
-#       - docker-compose -f /workspace/hello-go/docker-compose.yml up -d --build
-
 when:
-  - event: [push,manual]
-    branch: main
+  branch: main
+  event: manual
+
 
 steps:
-  - name: build
-    image: debian
+  - name: Build and Deploy with Docker Compose
+    image: docker/compose:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/void/hello-go:/workspace/hello-go
     commands:
-      - echo "This is the build step"
-      - echo "binary-data-123" > executable
-  - name: a-test-step
-    image: golang:1.16
-    commands:
-      - echo "Testing ..."
-      - ./executable
+      - docker-compose -f /workspace/hello-go/docker-compose.yml up -d --build
+
