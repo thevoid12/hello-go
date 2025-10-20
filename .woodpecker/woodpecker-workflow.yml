@@ -1,3 +1,8 @@
+when:
+  branch: main
+  event: push
+
+  
 steps:
   - name: Build and Deploy with Docker Compose
     image: docker/compose:latest
@@ -7,8 +12,6 @@ steps:
     commands:
       - docker-compose -f /workspace/hello-go/docker-compose.yml up -d --build
 
-when:
-  branch: main
-  event: push
+
 
 
