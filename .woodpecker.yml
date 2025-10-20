@@ -1,9 +1,4 @@
 steps:
-  - name: Clone Repo
-    image: alpine/git:latest
-    commands:
-      - git clone https://github.com/thevoid12/hello-go.git /workspace/hello-go
-
   - name: Build and Deploy with Docker Compose
     image: docker/compose:latest
     volumes:
