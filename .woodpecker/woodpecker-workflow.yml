@@ -13,7 +13,7 @@
 #       - docker-compose -f /workspace/hello-go/docker-compose.yml up -d --build
 
 when:
-  - event: push
+  - event: [push,manual]
     branch: main
 
 steps:
