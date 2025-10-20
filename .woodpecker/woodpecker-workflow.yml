@@ -8,7 +8,7 @@ steps:
     image: linuxserver/docker-compose
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /home/void/hello-go:/workspace/hello-go
+      - /home/void/hello-go:/workspace/hello-go #the clone happened in a container-only path, not on your Pi, so your host folder stays empty. so we should manually clone the repo if we want bind mount
     commands:
       - docker-compose -f /workspace/hello-go/docker-compose.yml up -d --build
 
