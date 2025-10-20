@@ -5,7 +5,7 @@ when:
 
 steps:
   - name: Build and Deploy with Docker Compose
-    image: docker/compose:latest
+    image: linuxserver/docker-compose
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /home/void/hello-go:/workspace/hello-go
